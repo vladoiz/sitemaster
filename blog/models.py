@@ -1,7 +1,5 @@
 from django.db import models
 from django import forms
-
-
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
@@ -49,16 +47,22 @@ class BlogIndexPage(Page):
         return blogs
 
     def get_context(self, request):
+        context = super().get_context(request)
         blogs = self.blogs
 
-        # Обновить контекст шаблона
-        context = super(BlogIndexPage, self).get_context(request)
+        # Пагинация
+        paginator = Paginator(blogs, 10)  # Показывать 10 блогов на странице
+        page = request.GET.get('page')
+        try:
+            blogs = paginator.page(page)
+        except PageNotAnInteger:
+            blogs = paginator.page(1)
+        except EmptyPage:
+            blogs = paginator.page(paginator.num_pages)
+
         context['blogs'] = blogs
         return context
 
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full")
     ]
-
-
-

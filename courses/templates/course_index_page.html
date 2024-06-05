@@ -1,0 +1,81 @@
+{# templates/courses/course_index_page.html #}
+
+{% extends "base.html" %}
+
+{% block content %}
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+        <ol>
+            <li><a href="/">Главная</a></li>
+            <li>{{ page.title }}</li>
+        </ol>
+        <h2>{{ page.title }}</h2>
+    </div>
+</section>
+
+<main id="main">
+    <section id="tabs" class="tabs section-bg wow fadeInUp" data-aos="fade-up">
+        <div class="container">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-courses-tab" data-bs-toggle="pill" data-bs-target="#pills-courses" type="button" role="tab" aria-controls="pills-courses" aria-selected="true">Курсы</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-clubs-tab" data-bs-toggle="pill" data-bs-target="#pills-clubs" type="button" role="tab" aria-controls="pills-clubs" aria-selected="false">Кружки</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-courses" role="tabpanel" aria-labelledby="pills-courses-tab">
+                    <section id="pricing" class="pricing section-bg wow fadeInUp" data-aos="fade-up">
+                        <div class="container">
+                            <div class="row flex-items-xs-middle flex-items-xs-center">
+                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                                    {% for course in courses %}
+                                    <div class="col-xs-12 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <h2 class="card-title">{{ course.course_name }}</h2>
+                                                <div class="card-header">
+                                                    <h3><span class="currency">₽</span>{{ course.full_cost }}<span class="period">/за весь курс</span></h3>
+                                                </div>
+                                                <p>Пройдя курс полностью</p>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">{{ course.description }}</li>
+                                                    <li class="list-group-item">{{ course.skills }}</li>
+                                                </ul>
+                                                <a href="{{ course.url }}" class="btn">Подробнее</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="tab-pane fade" id="pills-clubs" role="tabpanel" aria-labelledby="pills-clubs-tab">
+                    <section id="pricing" class="pricing section-bg wow fadeInUp" data-aos="fade-up">
+                        <div class="container">
+                            <div class="row flex-items-xs-middle flex-items-xs-center">
+                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                                    {% for club in clubs %}
+                                    <div class="col-xs-12 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <h2 class="card-title">{{ club.club_name }}</h2>
+                                                <p>{{ club.description }}</p>
+                                                <a href="{{ club.url }}" class="btn">Подробнее</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
