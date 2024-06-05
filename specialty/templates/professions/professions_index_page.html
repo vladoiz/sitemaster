@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}template-professionsindexpage{% endblock %}
+
+
+
+{% block content %}
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+
+    <ol>
+      <li><a href="/">Главная</a></li>
+      <li>{{ page.title }}</li>
+    </ol>
+  </div>
+  </section>
+<main id="main">
+      
+        <section id="services" class="services section-bg">
+            <div class="container" data-aos="fade-up">
+      
+              <header class="section-header">
+                <h3>Абитуриент!</h3>
+                <p>Здесь ты можешь найти информацию о своей будущей профессии</p>
+                <p>Просто выбери её и ты узнаешь всё в подробностях</p>
+              </header>
+      
+              {% include_block page.html %}    
+      
+            </div>
+          </section>
+
+</main>
+{% endblock content %}

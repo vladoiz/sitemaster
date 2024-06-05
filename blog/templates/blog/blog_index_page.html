@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+    <ol>
+      <li><a href="/">Главная</a></li>
+      <li>Новости</li>
+    </ol>
+  </div>
+  </section>
+<!-- section -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          <!-- post-->
+        <a class="icon-link" href="smiaboutkts" style="padding: 20px;"><button type="button" class="btn btn-primary">СМИ о техникуме</button></a>
+      {% for blog in blogs %}
+      
+          {% include "blog/includes/blog_list_item.html" %}
+      
+      {% empty %}
+          Новых постов нет
+      {% endfor %}     
+        </div>     
+      </div>
+       
+    </div>
+      </div>
+    </div>
+    
+          <!-- /post -->
+{% endblock %}

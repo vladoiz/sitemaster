@@ -1,0 +1,257 @@
+{% load static wagtailcore_tags  %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% wagtail_site as current_site %}
+                {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+	<meta name="yandex-verification" content="402181af13e5a515" />
+        <meta name="description" content="Курский техникум связи, курский техникум связи официальная страница, ктс, КТС, техникумы курска, где учиться в Курске, КТС Курск, ктс" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+       
+
+        {# Global stylesheets #}
+        <!-- Template Main CSS File 
+        <link rel="stylesheet" type="text/css" href="{% static 'css/Proj.css' %}">-->
+       
+<script src="https://pos.gosuslugi.ru/bin/script.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
+        <link href="{% static '/css/aos/aos.css' %}" rel="stylesheet">
+        <link href="{% static '/css/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet">
+        <link href="{% static '/css/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+        <link href="{% static '/css/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+        <link href="{% static 'img/favicon.png' %}" rel="icon">
+        <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet">
+        <link href="{% static '/css/mysite.css' %}" rel="stylesheet">
+<!-- GOSUSLUGI-->
+<link href="https://cdn.jsdelivr.net/gh/Alaev-Co/snowflakes/dist/snow.min.css" rel="stylesheet">
+<style>
+#js-show-iframe-wrapper{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-width:293px;max-width:100%;background:linear-gradient(138.4deg,#38bafe 26.49%,#2d73bc 79.45%);color:#fff;cursor:pointer}#js-show-iframe-wrapper .pos-banner-fluid *{box-sizing:border-box}#js-show-iframe-wrapper .pos-banner-fluid .pos-banner-btn_2{display:block;width:240px;min-height:56px;font-size:18px;line-height:24px;cursor:pointer;background:#0d4cd3;color:#fff;border:none;border-radius:8px;outline:0}#js-show-iframe-wrapper .pos-banner-fluid .pos-banner-btn_2:hover{background:#1d5deb}#js-show-iframe-wrapper .pos-banner-fluid .pos-banner-btn_2:focus{background:#2a63ad}#js-show-iframe-wrapper .pos-banner-fluid .pos-banner-btn_2:active{background:#2a63ad}@-webkit-keyframes fadeInFromNone{0%{display:none;opacity:0}1%{display:block;opacity:0}100%{display:block;opacity:1}}@keyframes fadeInFromNone{0%{display:none;opacity:0}1%{display:block;opacity:0}100%{display:block;opacity:1}}@font-face{font-family:LatoWebLight;src:url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Light.woff2) format("woff2"),url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Light.woff) format("woff"),url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Light.ttf) format("truetype");font-style:normal;font-weight:400}@font-face{font-family:LatoWeb;src:url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Regular.woff2) format("woff2"),url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Regular.woff) format("woff"),url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Regular.ttf) format("truetype");font-style:normal;font-weight:400}@font-face{font-family:LatoWebBold;src:url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Bold.woff2) format("woff2"),url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Bold.woff) format("woff"),url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Bold.ttf) format("truetype");font-style:normal;font-weight:400}@font-face{font-family:RobotoWebLight;src:url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Light.woff2) format("woff2"),url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Light.woff) format("woff"),url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Light.ttf) format("truetype");font-style:normal;font-weight:400}@font-face{font-family:RobotoWebRegular;src:url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Regular.woff2) format("woff2"),url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Regular.woff) format("woff"),url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Regular.ttf) format("truetype");font-style:normal;font-weight:400}@font-face{font-family:RobotoWebBold;src:url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Bold.woff2) format("woff2"),url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Bold.woff) format("woff"),url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Bold.ttf) format("truetype");font-style:normal;font-weight:400}@font-face{font-family:ScadaWebRegular;src:url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Regular.woff2) format("woff2"),url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Regular.woff) format("woff"),url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Regular.ttf) format("truetype");font-style:normal;font-weight:400}@font-face{font-family:ScadaWebBold;src:url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Bold.woff2) format("woff2"),url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Bold.woff) format("woff"),url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Bold.ttf) format("truetype");font-style:normal;font-weight:400}@font-face{font-family:Geometria;src:url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria.eot);src:url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria.eot?#iefix) format("embedded-opentype"),url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria.woff) format("woff"),url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:Geometria-ExtraBold;src:url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria-ExtraBold.eot);src:url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria-ExtraBold.eot?#iefix) format("embedded-opentype"),url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria-ExtraBold.woff) format("woff"),url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria-ExtraBold.ttf) format("truetype");font-weight:800;font-style:normal}
+</style>
+<style>
+#js-show-iframe-wrapper .bf-2{position:relative;display:grid;grid-template-columns:var(--pos-banner-fluid-2__grid-template-columns);grid-template-rows:var(--pos-banner-fluid-2__grid-template-rows);width:100%;max-width:1060px;font-family:LatoWeb,sans-serif;box-sizing:border-box}#js-show-iframe-wrapper .bf-2__decor{grid-column:var(--pos-banner-fluid-2__decor-grid-column);grid-row:var(--pos-banner-fluid-2__decor-grid-row);padding:var(--pos-banner-fluid-2__decor-padding);background:var(--pos-banner-fluid-2__bg-url) var(--pos-banner-fluid-2__bg-position) no-repeat;background-size:var(--pos-banner-fluid-2__bg-size)}#js-show-iframe-wrapper .bf-2__logo-wrap{position:absolute;top:var(--pos-banner-fluid-2__logo-wrap-top);bottom:var(--pos-banner-fluid-2__logo-wrap-bottom);right:0;display:flex;flex-direction:column;align-items:flex-end;padding:var(--pos-banner-fluid-2__logo-wrap-padding);background:#2d73bc;border-radius:var(--pos-banner-fluid-2__logo-wrap-border-radius)}#js-show-iframe-wrapper .bf-2__logo{width:128px}#js-show-iframe-wrapper .bf-2__slogan{font-family:LatoWebBold,sans-serif;font-size:var(--pos-banner-fluid-2__slogan-font-size);line-height:var(--pos-banner-fluid-2__slogan-line-height);color:#fff}#js-show-iframe-wrapper .bf-2__content{padding:var(--pos-banner-fluid-2__content-padding)}#js-show-iframe-wrapper .bf-2__description{display:flex;flex-direction:column;margin-bottom:24px}#js-show-iframe-wrapper .bf-2__text{margin-bottom:12px;font-size:24px;line-height:32px;font-family:LatoWebBold,sans-serif;color:#fff}#js-show-iframe-wrapper .bf-2__text_small{margin-bottom:0;font-size:16px;line-height:24px;font-family:LatoWeb,sans-serif}#js-show-iframe-wrapper .bf-2__btn-wrap{display:flex;align-items:center;justify-content:center}
+</style >	
+
+        {% block extra_css %}
+      
+        {% endblock %}
+    </head>
+
+    <body>
+          <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center">
+
+      <!--<h1 class="logo me-auto"><a href="index.html">КТС</a></h1> -->
+      <!-- Uncomment below if you prefer to use an image logo -->
+     <!--<img src="/media/images/IMG_9498.original.png" style="margin-top: 20px;" width="100" height="100" alt="" class="img-fluid">-->
+      
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto" href="/">Главная</a></li>
+          <li class="nav-link dropdown"><a href="/sveden/common"><span>Сведения об образовательной организации</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/sveden/common">Основные сведения</a></li>
+              <li><a href="/sveden/struct">Структура и органы управления образовательной организацией</a></li>
+              <li><a href="/sveden/document">Документы</a></li>
+              <li><a href="/sveden/education">Образование</a></li>
+              <li><a href="/sveden/edustandarts">Образовательные стандарты и требования</a></li>
+              <li><a href="/sveden/employees">Руководство. Педагогический (научнопедагогический) состав</a></li>
+              <li><a href="/sveden/objects">Материально-техническое обеспечение и оснащённость образовательного процесса</a></li>
+              <li><a href="/sveden/grants">Стипендии и меры поддержки обучающихся</a></li>
+              <li><a href="/sveden/paid_edu">Платные образовательные услуги</a></li>
+              <li><a href="/sveden/budget">Финансово-хозяйственная деятельность</a></li>
+              <li><a href="/sveden/vacant">Вакантные места для приема (перевода) обучающихся</a></li>
+              <li><a href="/sveden/ovz">Доступная среда</a></li>
+              <li><a href="/sveden/inter">Международное сотрудничество</a></li>
+	      <li><a href="/sveden/edueviroment">Электронная информационно-образовательная среда</a> </li>
+		<li><a href="/sveden/ocenka-kachestva-obrazovanija">Оценка качества образовательной деятельности</a></li>            
+</ul>
+          </li>
+          <li><a class="nav-link scrollto" href="/blog">Новости</a></li>
+	<li><a class="nav-link scrollto" href="/activity">Деятельность</a><li>
+          <li><a class="nav-link scrollto" href="/abiturientu">Абитуриенту</a></li>
+          <li><a class="nav-link scrollto " href="/student">Студенту</a></li>
+          <li><a class="nav-link scrollto " href="{% url 'search' %}">Поиск</a></li>
+        </ul>
+        <i class="bi mobile-nav-toggle bi-list"></i>
+      </nav><!-- .navbar -->
+      
+      <div class="social-links">
+        <a href="https://vk.com/ktskursk" class="vk" title="Группа в Vk" target="blank"><i class="fa fa-vk" aria-hidden="true"></i></a>
+        <!--<a href="https://tglink.ru/WeKTS_bot" class="telegram" title="Бот в телеграмме" target="blank"><i class="fa fa-telegram" aria-hidden="true"></i></a>-->
+        <a href="#" id="specialButton" title="Версия для слабовидящих" class="instagram"><i class="fa-solid fa-eye"></i></a>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+
+        {% block content %}
+        {% endblock %}
+
+        <footer id="footer" class="section-bg">
+<div id='js-show-iframe-wrapper'>
+  <div class='pos-banner-fluid bf-2'>
+
+    <div class='bf-2__decor'>
+      <div class='bf-2__logo-wrap'>
+        <img
+          class='bf-2__logo'
+          src='https://pos.gosuslugi.ru/bin/banner-fluid/gosuslugi-logo.svg'
+          alt='Госуслуги'
+        />
+        <div class='bf-2__slogan'>Решаем вместе</div >
+      </div >
+    </div >
+    <div class='bf-2__content'>
+
+      <div class='bf-2__description'>
+          <span class='bf-2__text'>
+            Не убран мусор, яма на дороге, не горит фонарь?
+          </span >
+        <span class='bf-2__text bf-2__text_small'>
+            Столкнулись с проблемой&nbsp;— сообщите о ней!
+          </span >
+      </div >
+
+      <div class='bf-2__btn-wrap'>
+        <!-- pos-banner-btn_2 не удалять; другие классы не добавлять -->
+        <button
+          class='pos-banner-btn_2'
+          type='button'
+        >Сообщить о проблеме
+        </button >
+      </div >
+
+    </div >
+
+  </div >
+</div >
+<script>
+(function(){
+"use strict";function ownKeys(e,t){var o=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);if(t)n=n.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable});o.push.apply(o,n)}return o}function _objectSpread(e){for(var t=1;t<arguments.length;t++){var o=null!=arguments[t]?arguments[t]:{};if(t%2)ownKeys(Object(o),true).forEach(function(t){_defineProperty(e,t,o[t])});else if(Object.getOwnPropertyDescriptors)Object.defineProperties(e,Object.getOwnPropertyDescriptors(o));else ownKeys(Object(o)).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(o,t))})}return e}function _defineProperty(e,t,o){if(t in e)Object.defineProperty(e,t,{value:o,enumerable:true,configurable:true,writable:true});else e[t]=o;return e}var POS_PREFIX_2="--pos-banner-fluid-2__",posOptionsInitial={"grid-template-columns":"100%","grid-template-rows":"310px auto","decor-grid-column":"initial","decor-grid-row":"initial","decor-padding":"30px 30px 0 30px","bg-url":"url('https://pos.gosuslugi.ru/bin/banner-fluid/2/banner-fluid-bg-2-small.svg')","bg-position":"calc(10% + 64px) calc(100% - 20px)","bg-size":"cover","content-padding":"0 30px 30px 30px","slogan-font-size":"20px","slogan-line-height":"32px","logo-wrap-padding":"20px 30px 30px 40px","logo-wrap-top":"0","logo-wrap-bottom":"initial","logo-wrap-border-radius":"0 0 0 80px"},setStyles=function(e,t){Object.keys(e).forEach(function(o){t.style.setProperty(POS_PREFIX_2+o,e[o])})},removeStyles=function(e,t){Object.keys(e).forEach(function(e){t.style.removeProperty(POS_PREFIX_2+e)})};function changePosBannerOnResize(){var e=document.documentElement,t=_objectSpread({},posOptionsInitial),o=document.getElementById("js-show-iframe-wrapper"),n=o?o.offsetWidth:document.body.offsetWidth;if(n>405)t["slogan-font-size"]="24px",t["logo-wrap-padding"]="30px 50px 30px 70px";if(n>500)t["grid-template-columns"]="min-content 1fr",t["grid-template-rows"]="100%",t["decor-grid-column"]="2",t["decor-grid-row"]="1",t["decor-padding"]="30px 30px 30px 0",t["content-padding"]="30px",t["bg-position"]="0% calc(100% - 70px)",t["logo-wrap-padding"]="30px 30px 24px 40px",t["logo-wrap-top"]="initial",t["logo-wrap-bottom"]="0",t["logo-wrap-border-radius"]="80px 0 0 0";if(n>585)t["bg-position"]="0% calc(100% - 6px)";if(n>800)t["bg-url"]="url('https://pos.gosuslugi.ru/bin/banner-fluid/2/banner-fluid-bg-2.svg')",t["bg-position"]="0% center";if(n>1020)t["slogan-font-size"]="32px",t["line-height"]="40px",t["logo-wrap-padding"]="30px 30px 24px 50px";setStyles(t,e)}changePosBannerOnResize(),window.addEventListener("resize",changePosBannerOnResize),window.onunload=function(){var e=document.documentElement;window.removeEventListener("resize",changePosBannerOnResize),removeStyles(posOptionsInitial,e)};
+})()
+</script>
+<script>Widget("https://pos.gosuslugi.ru/form", 296139)</script>
+            <div class="footer-top">
+              <div class="container">
+        
+                <div class="row">
+        
+                  <div class="col-lg-6">
+        
+                    <div class="row">
+        
+                      <div class="col-sm-6">
+        
+                        <div class="footer-info">
+                          <p><a href="/" class="logo me-auto"><img src="{% static 'img/Logo.png' %}" alt="" class="img-fluid" data-aos="fade-up" style="width: 50%; height: 50%;"></a>
+                          </p>
+                        </div>        
+                      </div>
+        
+                      <div class="col-sm-6">
+                        <div class="footer-links">
+                          <h4>Полезные ссылки</h4>
+                          <ul>
+                            <li><a href="/">Главная</a></li>
+                            <li><a href="/sveden">Сведения об образовательной организации</a></li>
+                            <li><a href="/blog">Новости</a></li>
+                            <li><a href="/abiturientu">Абитуриенту</a></li>
+                            <li><a href="/student">Студенту</a></li>    
+                          </ul>
+                        </div>
+        
+                        
+        
+                      </div>
+        
+                    </div>
+        
+                  </div>
+        
+                  <div class="col-lg-6">
+                        <div class="footer-links">
+                          <h4>Контакты</h4>
+                          <p>
+                            г. Курск <br>
+                            ул. Софьи Перовской, д.16<br>
+                            305001 <br>
+                            <strong>Телефон:</strong><a href="tel:+74712540922"> +7 (4712) 54-09-22</a><br>
+                            <strong>Email:</strong><a href="mailto:pu4kursk@mail.ru"> pu4kursk@mail.ru</a> <br>
+                          </p>
+                        </div>
+        
+                        <div class="social-links">
+                          <a href="https://vk.com/ktskursk" class="vk" title="Группа в Vk" target="blank"><i class="fa fa-vk" aria-hidden="true"></i></a>
+                          <a href="https://tglink.ru/WeKTS_bot" class="telegram" title="Бот в telegram" target="blank"><i class="bi bi-telegram"></i></a>
+                          <a href="/contact" class="linkedin"target="blank" title="Задать вопрос"><i class="bi bi-question-circle"></i></a>
+                          <a href="http://kts-moodle.ru/" class="instagram" title="ИИС moodle"target="blank"><i><img src="{% static 'img/moodle.png' %}" style="height: 28px; width: 28px;" ></i></a>
+                        </div>
+                        <br>
+                     <!--<div class="form">
+        
+                      <a href="/contact"><button class="contact" title="Задать вопрос">Задать вопрос <i class="bi bi-patch-question-fill"></i></button></a></div>
+                    
+        
+                    </div>-->
+        
+                  </div>
+        
+                </div>
+        
+              </div>
+            </div>
+        
+            <div class="container">
+              <div class="copyright">
+                &copy; <strong>ОБПОУ "Курский техникум связи". </strong> При использовании материалов сайта письменное разрешение администрации обязательно!
+              </div>
+            </div>
+          </footer><!-- End  Footer -->
+        
+          <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+        
+
+        {# Global javascript #}
+<script src='https://pos.gosuslugi.ru/bin/script.min.js'></script>
+        <script src="{%  static '/js/purecounter/purecounter.js' %}"></script>
+        <script src="{%  static '/js/aos/aos.js' %}"></script>
+        <script src="{%  static '/js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+ <script src="https://kit.fontawesome.com/5235f6a5ea.js" crossorigin="anonymous"></script>        
+<script src="{%  static '/js/glightbox/js/glightbox.min.js' %}"></script>
+        <script src="{%  static '/js/isotope-layout/isotope.pkgd.min.js' %}"></script>
+        <script src="{%  static '/js/swiper/swiper-bundle.min.js' %}"></script>
+        <script src="{%  static '/js/main.js' %}"></script>
+        
+        <!-- Connect specialversion-->
+        <script src="https://lidrekon.ru/slep/js/jquery.js"></script>
+        <script src="https://lidrekon.ru/slep/js/uhpv-full.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script>
+  $(document).ready(function () {
+      $('#myModal').modal('show');
+  });
+  </script>
+
+
+	{% block extra_js %}
+       
+        
+        {% endblock %}
+
+
+    
+      </main><!-- End #main -->
+    </body>
+</html>

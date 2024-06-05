@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}template-specialtyindexpage{% endblock %}
+
+
+
+{% block content %}
+<div class="offcanvas offcanvas-bottom show align-items-center" data-bs-scroll="true" data-bs-backdrop="false" style="height: 70px; background-color:#1bb1dc;" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header">
+    <div class="container">
+    <p class="event">ПРИХОДИ НА ДЕНЬ ОТКРЫТЫХ ДВЕРЕЙ В КТС</p>
+    <a class="event" href="signuptoopenkts" target="_blank">Записаться</a>
+  </div>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+  </div>
+</div>
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+
+    <ol>
+      <li><a href="/">Главная</a></li>
+      <li>{{ page.title }}</li>
+    </ol>
+  </div>
+  </section>
+<main id="main">
+      
+        <section id="services" class="services section-bg">
+            <div class="container" data-aos="fade-up">
+      
+              <header class="section-header">
+                <h3>Абитуриент!</h3>
+                <p>Здесь ты можешь найти информацию о своей будущей специальности.<br>Просто выбери её и ты узнаешь всё в подробностях</p>
+              </header>
+      
+              {% include_block page.html %}    
+      
+            </div>
+          </section>
+
+</main>
+{% endblock content %}

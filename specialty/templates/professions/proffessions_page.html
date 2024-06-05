@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-professionspage{% endblock %}
+{% block content %}
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+  
+      <ol>
+        <li><a href="/">Главная</a></li>
+        <li><a href="{{ page.get_parent.url }}">Профессии</a></li>
+        <li>{{ page.title }}</li>
+      </ol>
+    </div>
+    </section>
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-8">
+        {% for block in page.body %}
+            {% if block.block_type == 'carousel' %}
+          <div class="portfolio-details-slider swiper">
+            <div class="swiper-wrapper align-items-center">
+                {% for slide in block.value %}
+                    {% if slide.block_type == 'image' %}
+                         <div class="swiper-slide">
+                          {% image slide.value width-480 %}
+                         </div>
+                    {% else %}
+                            <div class="swiper-slide">
+                           {% include_block slide %}
+                         </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% else %}
+                (rendering for other block types)
+            {% endif %}
+        {% endfor %}
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="portfolio-info">
+            <h3>{{ page.title }}</h3>
+            <ul>
+              <li><a href="{{ page.related_document.url }}" target="_blank" title="{{ page.related_document.title }}"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ page.related_document.title }}</a></li>
+              <li><strong>Срок обучения</strong> {{ page.time }}</li>
+            </ul>
+            <button class="btn btn-primary btn-lg">Подать заявку</button>
+          </div>
+          
+         </div>
+<div class="portfolio-description">
+    {{ page.p|richtext }}
+        </div>
+        {% include_block page.html %}
+</div>
+
+
+    </div>
+  </section><!-- End Portfolio Details Section -->
+      
+{% endblock %}
