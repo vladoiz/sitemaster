@@ -59,59 +59,7 @@ class Abiturient(Page):
     ]
 
 
-    
 
-class ActivityTile(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    page = ParentalKey(
-        'ActivityIndexPage', 
-        related_name='tiles', 
-        on_delete=models.CASCADE
-    )
-    title = models.CharField(max_length=255)
-    icon = models.CharField(max_length=255, help_text="Bootstrap иконка, например 'bi bi-cpu-fill")
-    background_color = models.CharField(max_length=7, help_text="Цвет фона в формате hex, например '#ecebff'")
-    icon_color = models.CharField(max_length=7, help_text="Цвет иконки в формате hex, например '#8660fe'")
-    link = models.URLField(help_text="Ссылка на деятельность")
-    
-    panels = [
-        FieldPanel('title'),
-        FieldPanel('icon'),
-        FieldPanel('background_color'),
-        FieldPanel('icon_color'),
-        FieldPanel('link'),
-    ]
-
-    def __str__(self):
-        return self.title
-
-class ActivityIndexPage(Page):
-    subpage_types = []  # No subpages allowed
-    
-    content_panels = Page.content_panels + [
-        InlinePanel('tiles', label="Деятельность техникума")
-    ]
-
-    def get_context(self, request):
-        context = super().get_context(request)
-        context['tiles'] = self.tiles.all()
-        return context
-    
-class ActivityPage(Page):
-    body = StreamField([
-        ('heading', blocks.CharBlock(classname="full title")),
-        ('paragraph', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('document', DocumentChooserBlock()),
-    ])
-    
-    content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
-    ]
-
-    search_fields = Page.search_fields + [
-        index.SearchField('body'),
-    ]
 
 
 #функция поиска

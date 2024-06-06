@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+        <ol>
+            <li><a href="/">Главная</a></li>
+            <li><a href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a></li>
+            <li>{{ page.title }}</li>
+        </ol>
+        <h2>{{ page.title }}</h2>
+    </div>
+</section>
+
+<main id="main">
+<section id="features" class="features">
+  <div class="container" data-aos="fade-up">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <div class="portfolio-description">
+                        <header class="section-header">
+                            <p>
+                                {{ page.intro }}
+                            </p>
+                          </header>
+                    </div>
+
+                    <h3>Слайдер</h3>
+                    <section id="portfolio-details" class="portfolio-details">
+                        <div class="container">
+                          <div class="row gy-4">
+                            <div class="col-lg-8">
+                            {% for block in page.body %}
+                                {% if block.block_type == 'carousel' %}
+                              <div class="portfolio-details-slider swiper">
+                                <div class="swiper-wrapper align-items-center">
+                                    {% for slide in block.value %}
+                                        {% if slide.block_type == 'image' %}
+                                             <div class="swiper-slide">
+                                              {% image slide.value width-680 %}
+                                             </div>
+                                        {% else %}
+                                                <div class="swiper-slide">
+                                               {% include_block slide %}
+                                             </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                    (rendering for other block types)
+                                {% endif %}
+                            {% endfor %}
+                                <div class="swiper-pagination"></div>
+                              </div>
+                            </div>
+
+                    <h3>Документация</h3>
+                    {% for block in page.documentation %}
+                        {{ block }}
+                    {% endfor %}
+
+                    <h3>Новости</h3>
+                    {% for blog_post in blog_posts %}
+                        <div class="blog-post">
+                            <h4><a href="{{ blog_post.url }}">{{ blog_post.title }}</a></h4>
+                            <p>{{ blog_post.intro }}</p>
+                        </div>
+                    {% endfor %}
+
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if blog_posts.has_previous %}
+                                <a href="?page=1">&laquo; first</a>
+                                <a href="?page={{ blog_posts.previous_page_number }}">previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Page {{ blog_posts.number }} of {{ blog_posts.paginator.num_pages }}.
+                            </span>
+
+                            {% if blog_posts.has_next %}
+                                <a href="?page={{ blog_posts.next_page_number }}">next</a>
+                                <a href="?page={{ blog_posts.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
