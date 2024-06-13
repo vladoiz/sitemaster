@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<style>
+    .championship-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 100px; /* Отступ сверху */
+        height: calc(100vh - 100px); /* Уменьшение высоты на 100px для отступа сверху */
+    }
+    .championship-half {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        flex: 1 1 50%; /* Половина ширины экрана */
+        max-width: 50%; /* Половина ширины экрана */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .championship-half img {
+        width: 80%; /* Ширина изображения */
+        height: 80%; /* Высота изображения */
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .championship-half:hover img {
+        transform: scale(1.1);
+    }
+    .championship-link {
+        position: absolute;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 2rem;
+        font-weight: bold;
+        z-index: 1;
+    }
+    .championship-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 0;
+    }
+    @media (max-width: 768px) {
+        .championship-half {
+            flex: 1 1 100%; /* Полная ширина экрана на малых экранах */
+            max-width: 100%;
+        }
+        .championship-link {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<section class="championship-container container-fluid">
+    <div class="row no-gutters h-100 w-100">
+        {% for championship in page.get_children.live %}
+        <div class="col-md-6 championship-half" onclick="location.href='{{ championship.url }}'">
+            {% image championship.specific.image fill-800x800 as img %}
+            <img src="{{ img.url }}" alt="{{ championship.title }}">
+            <div class="championship-overlay"></div>
+            <a href="{{ championship.url }}" class="championship-link">{{ championship.title }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

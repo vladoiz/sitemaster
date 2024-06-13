@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<style>
+    .championship-intro {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .participation-history {
+        margin-top: 30px;
+    }
+    .participation-entry {
+        padding: 20px;
+        border-left: 5px solid #007bff;
+        margin-bottom: 20px;
+        background-color: #f8f9fa;
+    }
+    .competence-entry {
+        margin-left: 20px;
+        padding: 10px;
+        border-left: 5px solid #28a745;
+        background-color: #e9ecef;
+    }
+    .participation-entry h4, .competence-entry h5 {
+        margin-top: 0;
+    }
+    .participation-year {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    .competence-title {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .competence-result {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+</style>
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+  
+      <ol>
+        <li><a href="/">Главная</a></li>
+        <li><a href="{{ page.get_parent.url }}">Чемпионаты</a></li>
+        <li>{{ page.title }}</li>
+      </ol>
+    </div>
+    </section>
+<div class="container championship-intro">
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description|richtext }}</p>
+</div>
+
+<div class="container participation-history">
+    <h2>История участия</h2>
+    <div class="row">
+        {% for participation_year in page.participation_years.all %}
+        <div class="col-md-12 participation-entry">
+            <p class="participation-year">{{ participation_year.year }}{% if participation_year.championship_name %} - {{ participation_year.championship_name }}{% endif %}</p>
+            {% for competence in participation_year.competences.all %}
+            <div class="competence-entry">
+                <h5 class="competence-title">{{ competence.competence }}</h5>
+                <p class="competence-result">{{ competence.result }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+    

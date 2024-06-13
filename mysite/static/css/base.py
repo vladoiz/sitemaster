@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
+DEBUG = False
 
 # Application definition
 
@@ -48,8 +48,7 @@ INSTALLED_APPS = [
     "blog",
     "contact",
     "courses",
-    "activities",
-    "championships"
+    "activities"
     
 ]
 
