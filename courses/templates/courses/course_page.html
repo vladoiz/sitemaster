@@ -1,59 +1,106 @@
 {# templates/courses/course_page.html #}
 
 {% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
 <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
-  
-      <ol>
-        <li><a href="/">Главная</a></li>
-        <li><a href="{{ page.get_parent.url }}">Курсы</a></li>
-        <li>{{ page.title }}</li>
-      </ol>
+        <ol>
+            <li><a href="/">Главная</a></li>
+            <li><a href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a></li>
+            <li>{{ page.title }}</li>
+        </ol>
     </div>
-    </section>
-  <main id="main">
-    <br>
-    <div class="container">
-        <h1>{{ page.course_name }}</h1>
-        {% if page.full_cost %}
-            <p>Полная стоимость курса: {{ page.full_cost }} руб.</p>
-        {% endif %}
-        {% if page.group_cost %}
-            <p>Стоимость при наборе 12 человек: {{ page.group_cost }} руб.</p>
-        {% endif %}
-        {% if page.total_hours %}
-            <p>Общий объем занятий: {{ page.total_hours }} часов</p>
-        {% endif %}
-        {% if page.description %}
-            <p>{{ page.description }}</p>
-        {% endif %}
-        {% if page.skills %}
-            <h3>Навыки, которые будут освоены на курсе:</h3>
-            <p>{{ page.skills }}</p>
-        {% endif %}
-        {% if page.program_document %}
-            <a href="{{ page.program_document.url }}" class="btn btn-secondary">Скачать программу курса</a>
-        {% endif %}
-        {% if page.contact_info %}
-            <h3>Контактная информация:</h3>
-            <p>{{ page.contact_info }}</p>
-        {% endif %}
-        
-        {% if page.gallery_images.exists %}
-            <h3>Галерея</h3>
-            <div class="row">
-                {% for image in page.gallery_images.all %}
-                    <div class="col-md-4">
-                        <img src="{{ image.image.url }}" class="img-fluid" alt="{{ image.caption }}">
-                        {% if image.caption %}
-                            <p>{{ image.caption }}</p>
-                        {% endif %}
+</section>
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="text-center">{{ page.course_name }} 📚</h1>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-lg-6">
+            {% if page.full_cost %}
+                <div class="alert alert-primary" role="alert">
+                    💰 Полная стоимость курса: <strong>{{ page.full_cost }} руб.</strong>
+                </div>
+            {% endif %}
+            {% if page.group_cost %}
+                <div class="alert alert-success" role="alert">
+                    👥 Стоимость при наборе 12 человек: <strong>{{ page.group_cost }} руб.</strong>
+                </div>
+            {% endif %}
+            {% if page.total_hours %}
+                <div class="alert alert-info" role="alert">
+                    ⏰ Общий объем занятий: <strong>{{ page.total_hours }} часов</strong>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-lg-6">
+            {% if page.program_document %}
+                <a href="{{ page.program_document.url }}" class="btn btn-secondary btn-block mb-2">📄 Скачать программу курса</a>
+            {% endif %}
+            {% if page.contact_info %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">📞 Контактная информация</h5>
+                        <p class="card-text">{{ page.contact_info }}</p>
                     </div>
-                {% endfor %}
-            </div>
-        {% endif %}
+                </div>
+            {% endif %}
+        </div>
     </div>
-  </main>
+
+    {% if page.description %}
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">📝 Описание курса</h3>
+                        <p class="card-text">{{ page.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if page.skills %}
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">💪 Навыки, которые будут освоены на курсе</h3>
+                        <p class="card-text">{{ page.skills }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if page.gallery_images.exists %}
+        <div class="row">
+            <div class="col">
+                <h3>📸 Галерея</h3>
+                <div class="row">
+                    {% for image in page.gallery_images.all %}
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                {% image image.image original as img %}
+                                <img src="{{ img.url }}" class="card-img-top img-fluid" alt="{{ image.caption }}">
+                                {% if image.caption %}
+                                    <div class="card-body">
+                                        <p class="card-text">{{ image.caption }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}

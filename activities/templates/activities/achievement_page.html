@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+        <ol>
+            <li><a href="/">Главная</a></li>
+            <li><a href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a></li>
+            <li>{{ page.title }}</li>
+        </ol>
+       
+    </div>
+</section>
+
+<main id="main">
+    <section id="achievement-details" class="achievement-details section-bg py-5">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <div class="portfolio-description">
+                        <header class="section-header">
+                            <h3>{{ page.title }}</h3>
+                            <p>{{ page.description|safe }}</p>
+                        </header>
+                    </div>
+
+                    {% if page.image %}
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+                                <div class="swiper-slide">
+                                    {% image page.image original as img %}
+                                    <img src="{{ img.url }}" class="img-fluid" alt="{{ page.title }}">
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="portfolio-info">
+                        <h3>Информация о достижении</h3>
+                        <ul>
+                            <li><strong>Дата:</strong> {{ page.date }}</li>
+                            {% if page.document %}
+                                <a href="{{ page.document.url }}" class="btn btn-secondary">Скачать документ</a>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -14,78 +14,115 @@
 </section>
 
 <main id="main">
-<section id="features" class="features">
-  <div class="container" data-aos="fade-up">
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-8">
-                    <div class="portfolio-description">
-                        <header class="section-header">
-                            <p>
-                                {{ page.intro }}
-                            </p>
-                          </header>
-                    </div>
+                    
 
-                    <h3>Слайдер</h3>
-                    <section id="portfolio-details" class="portfolio-details">
-                        <div class="container">
-                          <div class="row gy-4">
-                            <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper">
+                        <div class="swiper-wrapper align-items-center">
                             {% for block in page.body %}
                                 {% if block.block_type == 'carousel' %}
-                              <div class="portfolio-details-slider swiper">
-                                <div class="swiper-wrapper align-items-center">
                                     {% for slide in block.value %}
                                         {% if slide.block_type == 'image' %}
-                                             <div class="swiper-slide">
-                                              {% image slide.value width-680 %}
-                                             </div>
+                                            <div class="swiper-slide">
+                                                {% image slide.value width-680 %}
+                                            </div>
                                         {% else %}
-                                                <div class="swiper-slide">
-                                               {% include_block slide %}
-                                             </div>
+                                            <div class="swiper-slide">
+                                                {% include_block slide %}
+                                            </div>
                                         {% endif %}
                                     {% endfor %}
-                                </div>
                                 {% else %}
-                                    (rendering for other block types)
+                                    <div class="swiper-slide">
+                                        {{ block }}
+                                    </div>
                                 {% endif %}
                             {% endfor %}
-                                <div class="swiper-pagination"></div>
-                              </div>
-                            </div>
-
-                    <h3>Документация</h3>
-                    {% for block in page.documentation %}
-                        {{ block }}
-                    {% endfor %}
-
-                    <h3>Новости</h3>
-                    {% for blog_post in blog_posts %}
-                        <div class="blog-post">
-                            <h4><a href="{{ blog_post.url }}">{{ blog_post.title }}</a></h4>
-                            <p>{{ blog_post.intro }}</p>
                         </div>
-                    {% endfor %}
-
-                    <div class="pagination">
-                        <span class="step-links">
-                            {% if blog_posts.has_previous %}
-                                <a href="?page=1">&laquo; first</a>
-                                <a href="?page={{ blog_posts.previous_page_number }}">previous</a>
-                            {% endif %}
-
-                            <span class="current">
-                                Page {{ blog_posts.number }} of {{ blog_posts.paginator.num_pages }}.
-                            </span>
-
-                            {% if blog_posts.has_next %}
-                                <a href="?page={{ blog_posts.next_page_number }}">next</a>
-                                <a href="?page={{ blog_posts.paginator.num_pages }}">last &raquo;</a>
-                            {% endif %}
-                        </span>
+                        <div class="swiper-pagination"></div>
                     </div>
                 </div>
+
+                <div class="col-lg-4">
+                    <div class="portfolio-info">
+                        <h3>{{ page.title }}</h3>
+                        <h4>Документация</h4>
+                        {% for block in page.documentation %}
+                            <div class="document-item">
+                                <i class="fa fa-file-text-o" style="color: #1bb1dc;" aria-hidden="true"></i>
+                                {{ block }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <header class="section-header">
+                        <p>{{ page.intro }}</p>
+                    </header>
+                </div>
+                <br>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="news">
+        <div class="container">
+            <div class="portfolio-description">
+                <h3>Новости</h3>
+                    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+                <div class="col-md-12 card border-light mb-3 aos-init aos-animate" data-aos="fade-right" data-aos-delay="100" >
+                    <div class="post post-row aos-init aos-animate" data-aos="fade-right" data-aos-delay="100" >
+                      <br>
+                {% for blog_post in blog_posts %}
+                <div class="col-md-12 card border-light mb-3 aos-init aos-animate" data-aos="fade-right" data-aos-delay="100" >
+                    <div class="post post-row aos-init aos-animate" data-aos="fade-right" data-aos-delay="100" >
+                      <br>
+                    {% if blog_post.main_image %}
+                        {% image blog_post.main_image max-350x350 as img %} 
+                            <a href="{% pageurl blog_post %}"><img class="post-img " src="{{ img.url }}" /></a>
+                        
+                    {% endif %}
+                      </a>
+                      
+                      <div class="post-body">
+                        <div class="post-meta">
+                          <br>
+                          <h3 class="post-title"><i class="calendar-event" aria-hidden="true"></i><a href="{% pageurl blog_post %}">{{ blog_post.title }}</a></h3>
+                              <span class="post-date">{{ blog_post.date }}</span>
+                              
+                        </div>
+                        
+                        <p>{{ blog_post.intro }}</p>
+                        <a href="{% pageurl blog_post %}"><button type="button"  class="btn btn-light">Подробнее</button></a>
+                        
+                      </div>
+                    </div>
+                    </div>
+                    
+                {% endfor %}
+
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if blog_posts.has_previous %}
+                            <a href="?page=1">&laquo; Первая</a>
+                            <a href="?page={{ blog_posts.previous_page_number }}">Предыдущая</a>
+                        {% endif %}
+                        <span class="current">
+                            Страница {{ blog_posts.number }} из {{ blog_posts.paginator.num_pages }}
+                        </span>
+                        {% if blog_posts.has_next %}
+                            <a href="?page={{ blog_posts.next_page_number }}">Следующая</a>
+                            <a href="?page={{ blog_posts.paginator.num_pages }}">Последняя &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            </div>
             </div>
         </div>
     </section>

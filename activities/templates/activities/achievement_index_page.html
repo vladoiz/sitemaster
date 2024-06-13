@@ -8,23 +8,23 @@
             <li><a href="/">Главная</a></li>
             <li>{{ page.title }}</li>
         </ol>
-        
+        <h2>{{ page.title }}</h2>
     </div>
 </section>
 
 <main id="main">
-    <section id="tabs" class="tabs section-bg py-5">
-        
+    <section id="categories" class="categories section-bg py-5">
         <div class="container">
-            <h2>{{ page.title }}</h2>
             <p>{{ page.intro }}</p>
+            <h2 class="text-center mb-4">Категории достижений</h2>
             <div class="row g-4">
-                {% for structure in structures %}
+                {% for category in categories %}
                 <div class="col-sm-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h3 class="card-title">{{ structure.title }}</h3>
-                            <a href="{{ structure.url }}" class="btn btn-primary">Подробнее</a>
+                            <h3 class="card-title">{{ category.title }}</h3>
+                            <p class="card-text">{{ category.intro|safe }}</p>
+                            <a href="{{ category.url }}" class="btn btn-primary">Подробнее</a>
                         </div>
                     </div>
                 </div>
@@ -33,27 +33,27 @@
             <div class="pagination mt-4">
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
-                        {% if structures.has_previous %}
+                        {% if categories.has_previous %}
                             <li class="page-item">
-                                <a class="page-link" href="?page=1">&laquo; Первая</a>
+                                <a class="page-link" href="?page=1">&laquo; first</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" href="?page={{ structures.previous_page_number }}">Предыдущая</a>
+                                <a class="page-link" href="?page={{ categories.previous_page_number }}">previous</a>
                             </li>
                         {% endif %}
 
                         <li class="page-item disabled">
                             <span class="page-link">
-                                Страница {{ structures.number }} из {{ structures.paginator.num_pages }}
+                                Page {{ categories.number }} of {{ categories.paginator.num_pages }}.
                             </span>
                         </li>
 
-                        {% if structures.has_next %}
+                        {% if categories.has_next %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{ structures.next_page_number }}">Следующая</a>
+                                <a class="page-link" href="?page={{ categories.next_page_number }}">next</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" href="?page={{ structures.paginator.num_pages }}">Последняя &raquo;</a>
+                                <a class="page-link" href="?page={{ categories.paginator.num_pages }}">last &raquo;</a>
                             </li>
                         {% endif %}
                     </ul>
@@ -61,6 +61,5 @@
             </div>
         </div>
     </section>
-
 </main>
 {% endblock %}

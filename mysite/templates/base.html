@@ -78,8 +78,13 @@
 		<li><a href="/sveden/ocenka-kachestva-obrazovanija">Оценка качества образовательной деятельности</a></li>            
 </ul>
           </li>
-          <li><a class="nav-link scrollto" href="/blog">Новости</a></li>
-	<li><a class="nav-link scrollto" href="/activities">Деятельность</a><li>
+          <!--<li><a class="nav-link scrollto" href="/blog">Новости</a></li>-->
+	        <li class="nav-link dropdown"><a class="nav-link scrollto" href="/activities">Деятельность <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/blog">Новости</a></li>
+              <li><a href="/activities/achivments">Достижения техникума</a></li>
+            </ul>  
+          <li>
           <li><a class="nav-link scrollto" href="/abiturientu">Абитуриенту</a></li>
           <li><a class="nav-link scrollto " href="/student">Студенту</a></li>
           <li><a class="nav-link scrollto " href="{% url 'search' %}">Поиск</a></li>

@@ -10,6 +10,14 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.search import index
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from modelcluster.models import ClusterableModel
+from taggit.models import TaggedItemBase, Tag as TaggitTag
+from taggit.managers import TaggableManager
+from wagtail.documents.edit_handlers import DocumentChooserPanel
+from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
+
 
 class ActivityBlogPage(Page):
     main_image = models.ForeignKey(
@@ -95,4 +103,84 @@ class ActivityIndexPage(Page):
             structures = paginator.page(paginator.num_pages)
 
         context['structures'] = structures
+        return context
+
+class AchievementCategory(Page):
+    intro = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+    ]
+
+    subpage_types = ['AchievementPage']
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        achievements = AchievementPage.objects.child_of(self).live().order_by('-date')
+
+        # Pagination for achievements
+        paginator = Paginator(achievements, 10)  # Show 10 achievements per page
+        page = request.GET.get('page')
+        try:
+            achievements = paginator.page(page)
+        except PageNotAnInteger:
+            achievements = paginator.page(1)
+        except EmptyPage:
+            achievements = paginator.page(paginator.num_pages)
+
+        context['achievements'] = achievements
+        return context
+
+class AchievementPage(Page):
+    description = RichTextField(blank=True)
+    date = models.DateField(default=timezone.now)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    document = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('description'),
+        FieldPanel('date'),
+        ImageChooserPanel('image'),
+        DocumentChooserPanel('document'),
+    ]
+
+    def __str__(self):
+        return self.title
+
+class AchievementIndexPage(Page):
+    intro = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+    ]
+
+    subpage_types = ['AchievementCategory']
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        categories = AchievementCategory.objects.child_of(self).live().order_by('-first_published_at')
+
+        # Pagination for categories
+        paginator = Paginator(categories, 10)  # Show 10 categories per page
+        page = request.GET.get('page')
+        try:
+            categories = paginator.page(page)
+        except PageNotAnInteger:
+            categories = paginator.page(1)
+        except EmptyPage:
+            categories = paginator.page(paginator.num_pages)
+
+        context['categories'] = categories
         return context
